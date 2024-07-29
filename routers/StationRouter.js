@@ -1,9 +1,10 @@
 import express from "express";
 import { getAllStation, getStationById, createStation, updateStation, deleteStation } from "../controllers/StationController.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js"
 
 const router = express.Router();
 
-router.get("/", getAllStation);
+router.get("/", authMiddleware, getAllStation);
 router.get("/:station_id", getStationById);
 router.post("/", createStation);
 router.put("/:station_id", updateStation);

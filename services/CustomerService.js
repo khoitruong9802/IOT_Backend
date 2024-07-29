@@ -57,7 +57,8 @@ export const checkCustomer = (userLogin) => {
           message: "The username is not defined",
         });
       }
-      const comparePassword = bcrypt.compareSync(password, checkCustomer.password);
+      const comparePassword = password === checkCustomer.password;
+      // const comparePassword = bcrypt.compareSync(password, checkCustomer.password);
       if (!comparePassword) {
         reject({
           status: "ERR",

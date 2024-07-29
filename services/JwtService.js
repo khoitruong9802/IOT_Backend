@@ -30,11 +30,11 @@ export const genneralRefreshToken = async (payload) => {
 export const refreshTokenJwtService = (token) => {
   return new Promise((resolve, reject) => {
     try {
-      jwt.verify(token, process.env.REFRESH_TOKEN, async (err, user) => {
+      jwt.verify(token, process.env.REFRESH_SECRET_KEY, async (err, user) => {
         if (err) {
           resolve({
             status: "ERR",
-            message: "The authemtication",
+            message: "Refresh token is not ok",
           });
         }
         const access_token = await genneralAccessToken({

@@ -1,5 +1,6 @@
 import express from "express";
 import { getAllDevice, getDeviceById, createDevice, updateDevice, deleteDevice } from "../controllers/DeviceController.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js"
 
 const router = express.Router();
 
