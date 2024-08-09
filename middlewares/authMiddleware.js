@@ -13,7 +13,7 @@ export const authMiddleware = (req, res, next) => {
         status: "Error"
       })
     } else {
-      console.log(user);
+      req.userId = user.id;
       next();
     }
   })

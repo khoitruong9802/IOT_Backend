@@ -13,14 +13,13 @@ const schema = new mongoose.Schema({
     type: String,
     required: true
   },
+  address: {
+    type: String,
+    required: true
+  },
   description: {
     type: String,
     required: false
-  },
-  customer: { 
-    type: mongoose.Schema.Types.ObjectId, 
-    ref: "Customer", 
-    required: true 
   }
 })
 

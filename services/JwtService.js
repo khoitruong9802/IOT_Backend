@@ -3,25 +3,25 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const genneralAccessToken = async (payload) => {
+export const generateAccessToken = async (payload) => {
   const access_token = jwt.sign(
     {
       ...payload,
     },
     process.env.ACCESS_SECRET_KEY,
-    { expiresIn: "30s" }
+    { expiresIn: "2h" }
   );
 
   return access_token;
 };
 
-export const genneralRefreshToken = async (payload) => {
+export const generateRefreshToken = async (payload) => {
   const refresh_token = jwt.sign(
     {
       ...payload,
     },
     process.env.REFRESH_SECRET_KEY,
-    { expiresIn: "365d" }
+    { expiresIn: "30d" }
   );
 
   return refresh_token;
@@ -37,7 +37,7 @@ export const refreshTokenJwtService = (token) => {
             message: "Refresh token is not ok",
           });
         }
-        const access_token = await genneralAccessToken({
+        const access_token = await generateAccessToken({
           id: user?.id,
         });
         resolve({

@@ -5,12 +5,12 @@ const schema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  device: { 
+  actuator: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: "Device", 
+    ref: "Actuator", 
     required: true 
   }
 }, {
   timestamps: true
 });
-export const Device = mongoose.model("Device", schema);
+export const Actuator = mongoose.model("ActuatorData", schema);

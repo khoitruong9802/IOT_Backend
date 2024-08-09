@@ -19,4 +19,4 @@ const schema = new mongoose.Schema({
     required: true 
   }
 });
-export const Device = mongoose.model("Device", schema);
+export const Actuator = mongoose.model("Actuator", schema);

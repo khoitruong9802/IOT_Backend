@@ -1,5 +1,5 @@
 import mqtt from "mqtt";
-import { Device } from "../models/DeviceModel.js";
+import { Actuator } from "../models/ActuatorModel.js";
 import { Sensor } from "../models/SensorModel.js";
 import { Schedule } from "../models/ScheduleModel.js";
 
@@ -18,7 +18,7 @@ export const connectMqtt = () => {
   });
   mqttClient.on("message", (topic, message) => {
     // handleMessageSensor(topic, message);
-    // handleMessageDevice(topic, message);
+    // handleMessageActuator(topic, message);
     handleMessageSchedule(topic, message);
     console.log(topic + " " + message);
   });
@@ -99,9 +99,9 @@ const getDataFromSensorModel = async () => {
   }
 };
 
-const handleMessageDevice = (topic, message) => {
+const handleMessageActuator = (topic, message) => {
   const data = message.toString();
-  const deviceData = parseInt(data);
+  const actuatorData = parseInt(data);
   let fieldToUpdate;
   switch (topic) {
     case "khoitruong9802/feeds/control-door":
@@ -117,15 +117,15 @@ const handleMessageDevice = (topic, message) => {
       console.log("Unknown topic:", topic);
       return;
   }
-  Device.findOneAndUpdate(
+  Actuator.findOneAndUpdate(
     {},
-    { $set: { [fieldToUpdate]: deviceData } },
+    { $set: { [fieldToUpdate]: actuatorData } },
     { upsert: true, new: true },
     (err, result) => {
       if (err) {
-        console.error("Error updating data in DeviceModel:", err);
+        console.error("Error updating data in ActuatorModel:", err);
       } else {
-        console.log("Data updated in DeviceModel:", result);
+        console.log("Data updated in ActuatorModel:", result);
       }
     }
   );

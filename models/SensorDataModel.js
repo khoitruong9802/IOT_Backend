@@ -13,4 +13,4 @@ const schema = new mongoose.Schema({
 }, {
   timestamps: true
 });
-export const Sensor = mongoose.model("Sensor", schema);
+export const Sensor = mongoose.model("SensorData", schema);
