@@ -10,11 +10,11 @@ export const authMiddleware = (req, res, next) => {
     if (err) {
       return res.status(401).json({
         message: "Authentication",
-        status: "Error"
-      })
+        status: "Error",
+      });
     } else {
       req.userId = user.id;
       next();
     }
-  })
-}
+  });
+};

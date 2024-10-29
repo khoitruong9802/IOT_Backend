@@ -1,5 +1,15 @@
 import express from "express";
-import { getUsers, getUserById, createUser, updateUser, loginUser, deleteUser, refreshToken, logoutUser } from "../controllers/UserController.js";
+import {
+  getUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  loginUser,
+  deleteUser,
+  refreshToken,
+  logoutUser,
+  loginGG,
+} from "../controllers/UserController.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -12,5 +22,6 @@ router.delete("/:user_id", authMiddleware, deleteUser);
 router.post("/login", loginUser);
 router.post("/logout", authMiddleware, logoutUser);
 router.post("/refresh-token", refreshToken);
+router.post("/google-login", loginGG);
 
 export default router;

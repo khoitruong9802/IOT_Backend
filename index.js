@@ -5,12 +5,11 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-import initWebRoutes from "./routers/index.js"
+import initWebRoutes from "./routers/index.js";
 
 // import { connectMqtt, publishToTopic, subscribeToTopic } from "./services/MqttService.js";
 // import { authMiddleware } from "./middlewares/authMiddleware.js";
 // import { Schedule } from "./models/ScheduleModel.js";
-
 
 const app = express();
 
@@ -23,9 +22,13 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 const corsOptions = {
-  origin: ["http://localhost:5173", "http://127.0.0.1:5500", "https://smartfarmkks.netlify.app"],
+  origin: [
+    "http://localhost:5173",
+    "http://127.0.0.1:5500",
+    "https://smartfarmkks.netlify.app",
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  credentials: true,
 };
 app.use(cors(corsOptions));
 
@@ -51,8 +54,7 @@ mongoose
   })
   .catch((err) => {
     console.log(err);
-  })
-
+  });
 
 // app.listen(PORT, () => {
 //   console.log(`Server is running on http://localhost:${PORT}`);
