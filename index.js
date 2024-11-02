@@ -4,14 +4,20 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-
 import initWebRoutes from "./routers/index.js";
+
+import fileUpload from "express-fileupload";
+import path from "path";
+
+const app = express();
+
+app.use(cors());
+app.use(fileUpload());
+// app.use(express.static(path.join(__dirname, "public")));
 
 // import { connectMqtt, publishToTopic, subscribeToTopic } from "./services/MqttService.js";
 // import { authMiddleware } from "./middlewares/authMiddleware.js";
 // import { Schedule } from "./models/ScheduleModel.js";
-
-const app = express();
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -33,13 +39,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 initWebRoutes(app);
-// app.get("/", authMiddleware, (req, res) => {
-//   console.log("authen ok");
-
-//   res.json({
-//     message: "get content ok"
-//   })
-// })
 
 mongoose
   .connect(URI)
